@@ -1,10 +1,10 @@
-require("dotenv").config();
-require("express-async-error");
-
 const express = require("express");
+require("express-async-errors");
 const app = express();
 const blogRouter = require("./routes/blog");
 const connectDB = require("./db/connect");
+
+require("dotenv").config();
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
