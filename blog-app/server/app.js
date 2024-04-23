@@ -6,14 +6,12 @@ const app = express();
 const blogRouter = require("./routes/blog");
 const connectDB = require("./db/connect");
 
-const BadRequest = require("./errors/bad-request");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app.use(express.json());
 
 app.get("/api/", (req, res) => {
-  throw new BadRequest("this is a bad request error");
   res.send("Welcome to my new blog post");
 });
 
