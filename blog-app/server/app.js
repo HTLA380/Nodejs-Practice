@@ -7,6 +7,7 @@ const blogRouter = require("./routes/blog");
 const connectDB = require("./db/connect");
 
 const BadRequest = require("./errors/bad-request");
+const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app.use(express.json());
@@ -17,6 +18,7 @@ app.get("/api/", (req, res) => {
 });
 
 app.use("/api/blogs", blogRouter);
+app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const PORT = 8080;
