@@ -2,6 +2,8 @@ const express = require("express");
 require("express-async-errors");
 const app = express();
 const blogRouter = require("./routes/blog");
+const authRouter = require("./routes/auth");
+
 const connectDB = require("./db/connect");
 
 require("dotenv").config();
@@ -16,6 +18,7 @@ app.get("/api/", (req, res) => {
 });
 
 app.use("/api/blogs", blogRouter);
+app.use("/api/auth", authRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 

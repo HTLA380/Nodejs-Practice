@@ -3,11 +3,13 @@ const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors");
 
 const getBlogs = async (req, res) => {
+  const { fields } = req.query;
+
   let queryObject = {};
 
   let result = blogModel.find(queryObject);
 
-  if (req.query.fields) {
+  if (fields) {
     const fieldsList = req.query.fields.split(",").join(" ");
     result = result.select(fieldsList);
   }
