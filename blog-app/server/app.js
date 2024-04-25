@@ -4,6 +4,8 @@ const app = express();
 const blogRouter = require("./routes/blog");
 const authRouter = require("./routes/auth");
 
+const authenticationMiddleware = require("./middleware/authentication");
+
 const connectDB = require("./db/connect");
 
 require("dotenv").config();
@@ -17,7 +19,7 @@ app.get("/api/", (req, res) => {
   res.send("Welcome to my new blog post");
 });
 
-app.use("/api/blogs", blogRouter);
+app.use("/api/blogs", authenticationMiddleware, blogRouter);
 app.use("/api/auth", authRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

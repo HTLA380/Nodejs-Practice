@@ -22,7 +22,7 @@ const login = async (req, res) => {
     throw new UnauthenticatedError(`User with email:${email} doesn't exist`);
   }
 
-  const isPasswordMatch = await user.comparePassword();
+  const isPasswordMatch = await user.comparePassword(password);
 
   if (!isPasswordMatch) {
     throw new UnauthenticatedError("Incorrect Password");
