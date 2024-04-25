@@ -3,9 +3,17 @@ const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors");
 
 const getBlogs = async (req, res) => {
-  const { fields } = req.query;
+  const { fields, author, category } = req.query;
 
   let queryObject = {};
+
+  if (author) {
+    queryObject.author = { $regex: author, $options: "i" };
+  }
+
+  if (category) {
+    queryObject.category = { $regex: category, $options: "i" };
+  }
 
   let result = blogModel.find(queryObject);
 
