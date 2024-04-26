@@ -1,6 +1,8 @@
 const express = require("express");
 require("express-async-errors");
 const app = express();
+const cors = require("cors");
+
 const blogRouter = require("./routes/blog");
 const authRouter = require("./routes/auth");
 
@@ -13,6 +15,7 @@ require("dotenv").config();
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/api/", (req, res) => {
