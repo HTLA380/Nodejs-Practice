@@ -75,6 +75,19 @@
   }
 }
 
+*::selection {
+  @apply bg-foreground text-red-200;
+}
+
 h3 {
   @apply text-xl font-semibold;
+}
+
+.landing_title {
+  font-size: clamp(4rem, 22.1429vw + -2.9286rem, 17rem);
+  line-height: 1.25;
+}
+
+.landing_separator {
+  width: clamp(15rem, 74.2857vw + 5.1429rem, 72rem);
 }
