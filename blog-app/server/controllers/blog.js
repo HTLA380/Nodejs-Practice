@@ -27,7 +27,9 @@ const getBlogs = async (req, res) => {
 };
 
 const createBlog = async (req, res) => {
-  await blogModel.create(req.body);
+  const userId = req.user.userId;
+
+  await blogModel.create({ ...req.body, createdBy: userId });
   res.status(StatusCodes.CREATED).send();
 };
 

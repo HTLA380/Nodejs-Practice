@@ -24,6 +24,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       require: [true, "category is required"],
     },
+    createdBy: {
+      type: String,
+      require: [true, "Author id is required"],
+    },
   },
   { timestamps: true }
 );
