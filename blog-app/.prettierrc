@@ -1,3 +1,4 @@
 {
-  "useSingleQuote": true
+  "useSingleQuote": true,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
