@@ -22,14 +22,16 @@ const RecentBlogSection = () => {
 
       <div className="w-ful mt-7 grid grid-cols-12 gap-8">
         {RecentBlogMock.map((data, index) => {
-          if (index === 0)
+          if (index === 0) {
             return (
               <RenderLatestBlog key={`recent blog ${index + 1}`} {...data} />
             );
-          if (index === RecentBlogMock.length - 1)
+          }
+          if (index === RecentBlogMock.length - 1) {
             return (
               <RenderWidthFullBlog key={`recent blog ${index + 1}`} {...data} />
             );
+          }
           return <RenderBlog key={`recent blog ${index + 1}`} {...data} />;
         })}
       </div>
@@ -46,7 +48,7 @@ const RenderLatestBlog: React.FC<BlogProps> = ({
   description,
 }) => {
   return (
-    <div className="col-span-6 row-span-2 h-full w-full">
+    <div className="col-span-12 row-span-2 mx-auto h-full w-full max-w-80 sm:max-w-2xl lg:col-span-6 lg:max-w-none">
       <Image
         src={imageUrl}
         width={600}
@@ -60,12 +62,14 @@ const RenderLatestBlog: React.FC<BlogProps> = ({
           {author} &#8226; {fDate(createdAt)}
         </p>
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold">{title}</h2>
+          <h2 className="text-lg font-semibold sm:text-2xl">{title}</h2>
           <Button size={null} variant={"ghost"} className="rounded-full">
             <ArrowUpRight size={20} />
           </Button>
         </div>
-        <p className="text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground text-sm sm:text-base">
+          {description}
+        </p>
 
         <div className="flex items-center gap-3">
           {category.map((name) => {
@@ -97,16 +101,16 @@ const RenderBlog: React.FC<BlogProps> = ({
   description,
 }) => {
   return (
-    <div className="col-span-6 flex items-stretch gap-5">
+    <div className="col-span-12 mx-auto flex max-w-80 flex-col items-stretch gap-5 sm:max-w-2xl sm:flex-row lg:col-span-6 lg:max-w-none">
       <Image
         src={imageUrl}
         width={320}
         height={200}
         alt="latest blog"
-        className="h-fit w-full max-w-80 object-cover object-center"
+        className="h-fit w-full object-cover object-center"
       />
 
-      <div className="flex h-full flex-col justify-between py-5">
+      <div className="flex h-full flex-col gap-3">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
@@ -154,10 +158,10 @@ const RenderWidthFullBlog: React.FC<BlogProps> = ({
         width={600}
         height={200}
         alt="latest blog"
-        className="col-span-6 h-fit object-cover object-center"
+        className="col-span-12 mx-auto h-fit w-full max-w-80 object-cover object-center md:max-w-2xl lg:col-span-6 lg:max-w-none"
       />
 
-      <div className="col-span-6 flex h-full flex-col justify-between py-4">
+      <div className="col-span-12 mx-auto flex w-full max-w-80 flex-col gap-3 py-4 md:max-w-2xl lg:col-span-6 lg:max-w-none">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
