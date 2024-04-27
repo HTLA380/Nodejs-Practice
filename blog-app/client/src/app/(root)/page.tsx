@@ -1,13 +1,15 @@
 import React from "react";
 import LandingSection from "./LandingSection";
-
-// BuddhaWisdomBlog
+import RecentBlogSection from "./RecentBlogSection";
 
 const Home = () => {
   return (
-    <div className="p-5">
+    <main className="p-5">
       <LandingSection />
-    </div>
+      <div className="mt-10">
+        <RecentBlogSection />
+      </div>
+    </main>
   );
 };
 
