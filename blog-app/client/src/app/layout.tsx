@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import ThemeProviderWrapper from "@/components/providers/ThemeProviderWrapper";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <body suppressHydrationWarning className={inter.className}>
           <Navbar />
           {children}
+          <Footer />
         </body>
       </ThemeProviderWrapper>
     </html>

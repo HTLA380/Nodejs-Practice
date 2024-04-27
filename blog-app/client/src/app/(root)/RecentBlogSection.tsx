@@ -20,7 +20,7 @@ const RecentBlogSection = () => {
     <section className="border-b-border mx-auto mt-10 w-full max-w-80 border-b pb-12 sm:max-w-2xl lg:max-w-6xl">
       <h3>Recent blog posts</h3>
 
-      <div className="mt-7 grid w-full grid-cols-12 gap-8">
+      <div className="mt-7 grid w-full grid-cols-12 gap-y-8 lg:gap-x-8 lg:gap-y-0">
         {RecentBlogMock.map((data, index) => {
           if (index === 0) {
             return (

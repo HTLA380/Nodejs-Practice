@@ -23,7 +23,7 @@ const AllBlogsSection = () => {
                 className="w-full object-cover object-center"
               />
 
-              <div className="mt-4 flex h-full flex-col gap-3">
+              <div className="mt-4 flex h-fit flex-col gap-3">
                 <p className="text-xs font-semibold text-purple-800">
                   {blog.author} &#8226; {fDate(blog.createdAt)}
                 </p>

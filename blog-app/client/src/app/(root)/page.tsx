@@ -5,7 +5,7 @@ import AllBlogsSection from "./AllBlogsSection";
 
 const Home = () => {
   return (
-    <main className="p-5">
+    <main className="px-5">
       <LandingSection />
       <RecentBlogSection />
       <AllBlogsSection />
