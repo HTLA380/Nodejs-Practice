@@ -17,10 +17,10 @@ interface BlogProps {
 
 const RecentBlogSection = () => {
   return (
-    <div className="border-b-border mx-auto w-full max-w-6xl border-b pb-12">
+    <section className="border-b-border mx-auto mt-10 w-full max-w-80 border-b pb-12 sm:max-w-2xl lg:max-w-6xl">
       <h3>Recent blog posts</h3>
 
-      <div className="w-ful mt-7 grid grid-cols-12 gap-8">
+      <div className="mt-7 grid w-full grid-cols-12 gap-8">
         {RecentBlogMock.map((data, index) => {
           if (index === 0) {
             return (
@@ -35,7 +35,7 @@ const RecentBlogSection = () => {
           return <RenderBlog key={`recent blog ${index + 1}`} {...data} />;
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -48,7 +48,7 @@ const RenderLatestBlog: React.FC<BlogProps> = ({
   description,
 }) => {
   return (
-    <div className="col-span-12 row-span-2 mx-auto h-full w-full max-w-80 sm:max-w-2xl lg:col-span-6 lg:max-w-none">
+    <div className="col-span-12 row-span-2 mx-auto h-full w-full lg:col-span-6">
       <Image
         src={imageUrl}
         width={600}
@@ -101,7 +101,7 @@ const RenderBlog: React.FC<BlogProps> = ({
   description,
 }) => {
   return (
-    <div className="col-span-12 mx-auto flex max-w-80 flex-col items-stretch gap-5 sm:max-w-2xl sm:flex-row lg:col-span-6 lg:max-w-none">
+    <div className="col-span-12 mx-auto flex flex-col items-stretch gap-5 sm:flex-row lg:col-span-6">
       <Image
         src={imageUrl}
         width={320}
@@ -158,10 +158,10 @@ const RenderWidthFullBlog: React.FC<BlogProps> = ({
         width={600}
         height={200}
         alt="latest blog"
-        className="col-span-12 mx-auto h-fit w-full max-w-80 object-cover object-center md:max-w-2xl lg:col-span-6 lg:max-w-none"
+        className="col-span-12 mx-auto h-fit w-full object-cover object-center lg:col-span-6"
       />
 
-      <div className="col-span-12 mx-auto flex w-full max-w-80 flex-col gap-3 py-4 md:max-w-2xl lg:col-span-6 lg:max-w-none">
+      <div className="col-span-12 mx-auto flex w-full flex-col gap-3 py-4 lg:col-span-6">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
