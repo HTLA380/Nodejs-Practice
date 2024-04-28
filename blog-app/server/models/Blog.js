@@ -16,6 +16,10 @@ const blogSchema = new mongoose.Schema(
       minlength: [4, "author name is too short"],
       maxlength: [20, "author name is too long"],
     },
+    description: {
+      type: String,
+      required: [true, "description is required"],
+    },
     content: {
       type: String,
       required: [true, "content is required"],

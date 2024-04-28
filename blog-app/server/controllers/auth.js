@@ -32,7 +32,7 @@ const login = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ user: { name: user.name, email: user.email }, token });
+    .json({ user: { name: user.name, email: user.email, id: user._id }, token });
 };
 
 module.exports = { register, login };
