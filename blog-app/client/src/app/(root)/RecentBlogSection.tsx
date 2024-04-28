@@ -5,42 +5,31 @@ import { fDate } from "@/utils/formatDate";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { getCategoryColors } from "@/utils/getCategoryColors";
+import { Blog, getRecentBlogs } from "./_actions/getBlogs";
 
-interface BlogProps {
-  title: string;
-  description: string;
-  author: string;
-  imageUrl: string;
-  createdAt: string;
-  category: Array<string>;
-}
+const RecentBlogSection = async () => {
+  const blogs: Array<Blog> = await getRecentBlogs();
 
-const RecentBlogSection = () => {
   return (
     <section className="border-b-border mx-auto mt-10 w-full max-w-80 border-b pb-12 sm:max-w-2xl lg:max-w-6xl">
       <h3>Recent blog posts</h3>
 
-      <div className="mt-7 grid w-full grid-cols-12 gap-y-8 lg:gap-x-8 lg:gap-y-0">
-        {RecentBlogMock.map((data, index) => {
+      <div className="mt-7 grid w-full grid-cols-12 gap-y-8 lg:gap-x-8">
+        {blogs?.map((blog, index) => {
           if (index === 0) {
-            return (
-              <RenderLatestBlog key={`recent blog ${index + 1}`} {...data} />
-            );
+            return <RenderLatestBlog key={blog._id} {...blog} />;
           }
           if (index === RecentBlogMock.length - 1) {
-            return (
-              <RenderWidthFullBlog key={`recent blog ${index + 1}`} {...data} />
-            );
+            return <RenderWidthFullBlog key={blog._id} {...blog} />;
           }
-          return <RenderBlog key={`recent blog ${index + 1}`} {...data} />;
+          return <RenderBlog key={blog._id} {...blog} />;
         })}
       </div>
     </section>
   );
 };
 
-const RenderLatestBlog: React.FC<BlogProps> = ({
-  imageUrl,
+const RenderLatestBlog: React.FC<Blog> = ({
   author,
   createdAt,
   title,
@@ -50,11 +39,11 @@ const RenderLatestBlog: React.FC<BlogProps> = ({
   return (
     <div className="col-span-12 row-span-2 mx-auto h-full w-full lg:col-span-6">
       <Image
-        src={imageUrl}
+        src={"/assets/images/blogs/image-7.jpg"}
         width={600}
         height={200}
         alt="latest blog"
-        className="h-fit w-full object-cover object-center"
+        className="aspect-square w-full object-cover object-center sm:aspect-video"
       />
 
       <div className="mt-7 flex flex-col gap-3">
@@ -72,28 +61,14 @@ const RenderLatestBlog: React.FC<BlogProps> = ({
         </p>
 
         <div className="flex items-center gap-3">
-          {category.map((name) => {
-            const { backgroundColor, textColor: color } =
-              getCategoryColors(name);
-
-            return (
-              <div
-                key={`name`}
-                className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
-                style={{ backgroundColor, color }}
-              >
-                {name}
-              </div>
-            );
-          })}
+          <RenderCategoryLabel name={category} />
         </div>
       </div>
     </div>
   );
 };
 
-const RenderBlog: React.FC<BlogProps> = ({
-  imageUrl,
+const RenderBlog: React.FC<Blog> = ({
   author,
   createdAt,
   title,
@@ -103,11 +78,11 @@ const RenderBlog: React.FC<BlogProps> = ({
   return (
     <div className="col-span-12 mx-auto flex flex-col items-stretch gap-5 sm:flex-row lg:col-span-6">
       <Image
-        src={imageUrl}
-        width={320}
-        height={200}
+        src={"/assets/images/blogs/image-4.jpg"}
+        width={200}
+        height={20}
         alt="latest blog"
-        className="h-fit w-full object-cover object-center"
+        className="aspect-square h-fit w-full object-cover object-center"
       />
 
       <div className="flex h-full flex-col gap-3">
@@ -123,27 +98,14 @@ const RenderBlog: React.FC<BlogProps> = ({
         <p className="text-muted-foreground text-sm">{description}</p>
 
         <div className="mt-3 flex items-center gap-2">
-          {category.map((name) => {
-            const { backgroundColor, textColor: color } =
-              getCategoryColors(name);
-
-            return (
-              <div
-                key={`name`}
-                className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
-                style={{ backgroundColor, color }}
-              >
-                {name}
-              </div>
-            );
-          })}
+          <RenderCategoryLabel name={category} />
         </div>
       </div>
     </div>
   );
 };
 
-const RenderWidthFullBlog: React.FC<BlogProps> = ({
+const RenderWidthFullBlog: React.FC<Blog> = ({
   imageUrl,
   author,
   createdAt,
@@ -154,11 +116,11 @@ const RenderWidthFullBlog: React.FC<BlogProps> = ({
   return (
     <>
       <Image
-        src={imageUrl}
+        src={"/assets/images/blogs/image-6.jpg"}
         width={600}
         height={200}
         alt="latest blog"
-        className="col-span-12 mx-auto h-fit w-full object-cover object-center lg:col-span-6"
+        className="col-span-12 mx-auto aspect-video h-fit w-full object-cover object-center lg:col-span-6"
       />
 
       <div className="col-span-12 mx-auto flex w-full flex-col gap-3 py-4 lg:col-span-6">
@@ -174,23 +136,24 @@ const RenderWidthFullBlog: React.FC<BlogProps> = ({
         <p className="text-muted-foreground text-sm">{description}</p>
 
         <div className="flex items-center gap-3">
-          {category.map((name) => {
-            const { backgroundColor, textColor: color } =
-              getCategoryColors(name);
-
-            return (
-              <div
-                key={`name`}
-                className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
-                style={{ backgroundColor, color }}
-              >
-                {name}
-              </div>
-            );
-          })}
+          <RenderCategoryLabel name={category} />
         </div>
       </div>
     </>
+  );
+};
+
+const RenderCategoryLabel = ({ name }: { name: string }) => {
+  const { backgroundColor, textColor: color } = getCategoryColors(name);
+
+  return (
+    <div
+      key={`name`}
+      className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
+      style={{ backgroundColor, color }}
+    >
+      {name}
+    </div>
   );
 };
 
