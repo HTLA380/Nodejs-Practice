@@ -33,8 +33,7 @@ const blogSchema = new mongoose.Schema(
       required: [true, "Author id is required"],
     },
     imageUrl: {
-      data: Buffer,
-      contentType: String,
+      type: String,
     }
   },
   { timestamps: true }
