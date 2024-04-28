@@ -18,16 +18,20 @@ const blogSchema = new mongoose.Schema(
     },
     content: {
       type: String,
-      require: [true, "content is required"],
+      required: [true, "content is required"],
     },
     category: {
       type: String,
-      require: [true, "category is required"],
+      required: [true, "category is required"],
     },
     createdBy: {
       type: String,
-      require: [true, "Author id is required"],
+      required: [true, "Author id is required"],
     },
+    imageUrl: {
+      data: Buffer,
+      contentType: String,
+    }
   },
   { timestamps: true }
 );

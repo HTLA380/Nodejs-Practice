@@ -29,7 +29,7 @@ const getBlogs = async (req, res) => {
 const createBlog = async (req, res) => {
   const userId = req.user.userId;
 
-  await blogModel.create({ ...req.body, createdBy: userId });
+  await blogModel.create({ ...req.body, createdBy: userId, imageUrl: {data: req.file.filename, contentType: 'image/png'} });
   res.status(StatusCodes.CREATED).send();
 };
 
