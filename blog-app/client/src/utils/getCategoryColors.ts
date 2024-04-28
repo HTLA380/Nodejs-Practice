@@ -6,7 +6,7 @@ export function getCategoryColors(category: string): {
   let textColor: string;
 
   switch (category.toLowerCase()) {
-    case "design":
+    case "change":
       backgroundColor = "#F9F5FF";
       textColor = "#6941C6";
       break;
@@ -14,7 +14,7 @@ export function getCategoryColors(category: string): {
       backgroundColor = "#EEF4FF";
       textColor = "#3538CD";
       break;
-    case "presentation":
+    case "challenges":
       backgroundColor = "#FDF2FA";
       textColor = "#C11574";
       break;

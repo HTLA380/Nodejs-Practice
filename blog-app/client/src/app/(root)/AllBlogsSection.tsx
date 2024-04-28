@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { Blog, getBlogs } from "./_actions/getBlogs";
 import Link from "next/link";
+import { truncateText } from "@/utils/truncateText";
 
 const AllBlogsSection = async () => {
   const blogs: Array<Blog> = await getBlogs();
@@ -23,8 +24,9 @@ const AllBlogsSection = async () => {
                 src={blog.imageUrl || "https://placehold.co/600x400"}
                 width={300}
                 height={300}
+                draggable={false}
                 alt={`blog ${index + 1}`}
-                className="aspect-square w-full object-cover object-center"
+                className="aspect-square w-full select-none object-cover object-center"
               />
 
               <div className="mt-4 flex h-fit flex-col gap-3">
@@ -35,7 +37,9 @@ const AllBlogsSection = async () => {
                   href={`blogs/${blog._id}`}
                   className="flex items-center justify-between"
                 >
-                  <h4 className="font-semibold">{blog.title}</h4>
+                  <h4 className="font-semibold hover:underline">
+                    {blog.title}
+                  </h4>
                   <Button
                     size={null}
                     variant={"ghost"}
@@ -45,7 +49,7 @@ const AllBlogsSection = async () => {
                   </Button>
                 </Link>
                 <p className="text-muted-foreground text-sm">
-                  {blog.description}
+                  {truncateText(blog.description, 85)}
                 </p>
 
                 <div className="mt-3 flex items-center gap-2">

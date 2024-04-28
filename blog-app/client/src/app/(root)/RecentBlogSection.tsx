@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { getCategoryColors } from "@/utils/getCategoryColors";
 import { Blog, getRecentBlogs } from "./_actions/getBlogs";
+import Link from "next/link";
+import { truncateText } from "@/utils/truncateText";
 
 const RecentBlogSection = async () => {
   const blogs: Array<Blog> = await getRecentBlogs();
@@ -30,6 +32,7 @@ const RecentBlogSection = async () => {
 };
 
 const RenderLatestBlog: React.FC<Blog> = ({
+  _id,
   author,
   createdAt,
   title,
@@ -43,22 +46,30 @@ const RenderLatestBlog: React.FC<Blog> = ({
         src={imageUrl || "https://placehold.co/600x400"}
         width={600}
         height={200}
+        draggable={false}
         alt="latest blog"
-        className="aspect-square w-full object-cover object-center sm:aspect-video"
+        className="aspect-square w-full select-none object-cover object-center sm:aspect-video"
       />
 
       <div className="mt-7 flex flex-col gap-3">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold sm:text-2xl">{title}</h2>
+
+        <Link
+          href={`/blogs/${_id}`}
+          className="flex items-center justify-between"
+        >
+          <h2 className="text-lg font-semibold hover:underline sm:text-xl">
+            {title}
+          </h2>
           <Button size={null} variant={"ghost"} className="rounded-full">
             <ArrowUpRight size={20} />
           </Button>
-        </div>
+        </Link>
+
         <p className="text-muted-foreground text-sm sm:text-base">
-          {description}
+          {truncateText(description, 150)}
         </p>
 
         <div className="flex items-center gap-3">
@@ -70,6 +81,7 @@ const RenderLatestBlog: React.FC<Blog> = ({
 };
 
 const RenderBlog: React.FC<Blog> = ({
+  _id,
   author,
   createdAt,
   title,
@@ -85,21 +97,29 @@ const RenderBlog: React.FC<Blog> = ({
         src={imageUrl || "https://placehold.co/600x400"}
         width={200}
         height={20}
+        draggable={false}
         alt="latest blog"
-        className="aspect-square h-fit w-full object-cover object-center"
+        className="aspect-square h-fit w-full select-none object-cover object-center"
       />
 
       <div className="flex h-full flex-col gap-3">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
-        <div className="flex items-center justify-between">
-          <h4 className="font-semibold">{title}</h4>
+
+        <Link
+          href={`/blogs/${_id}`}
+          className="flex items-center justify-between"
+        >
+          <h4 className="font-semibold hover:underline">{title}</h4>
           <Button size={null} variant={"ghost"} className="rounded-full">
             <ArrowUpRight size={20} />
           </Button>
-        </div>
-        <p className="text-muted-foreground text-sm">{description}</p>
+        </Link>
+
+        <p className="text-muted-foreground max-h-50 text-sm">
+          {truncateText(description, 85)}
+        </p>
 
         <div className="mt-3 flex items-center gap-2">
           <RenderCategoryLabel name={category} />
@@ -110,6 +130,7 @@ const RenderBlog: React.FC<Blog> = ({
 };
 
 const RenderWidthFullBlog: React.FC<Blog> = ({
+  _id,
   imageUrl,
   author,
   createdAt,
@@ -124,20 +145,28 @@ const RenderWidthFullBlog: React.FC<Blog> = ({
         width={600}
         height={200}
         alt="latest blog"
-        className="col-span-12 mx-auto aspect-video h-fit w-full object-cover object-center lg:col-span-6"
+        draggable="false"
+        className="col-span-12 mx-auto aspect-video h-fit w-full select-none object-cover object-center lg:col-span-6"
       />
 
       <div className="col-span-12 mx-auto flex w-full flex-col gap-3 py-4 lg:col-span-6">
         <p className="text-xs font-semibold text-purple-800">
           {author} &#8226; {fDate(createdAt)}
         </p>
-        <div className="flex items-center justify-between">
-          <h3>{title}</h3>
+
+        <Link
+          href={`/blogs/${_id}`}
+          className="flex items-center justify-between"
+        >
+          <h3 className="hover:underline">{title}</h3>
           <Button size={null} variant={"ghost"} className="rounded-full">
             <ArrowUpRight size={20} />
           </Button>
-        </div>
-        <p className="text-muted-foreground text-sm">{description}</p>
+        </Link>
+
+        <p className="text-muted-foreground text-sm">
+          {truncateText(description, 150)}
+        </p>
 
         <div className="flex items-center gap-3">
           <RenderCategoryLabel name={category} />
