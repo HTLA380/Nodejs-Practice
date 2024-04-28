@@ -17,12 +17,10 @@ const AllBlogsSection = async () => {
 
       <div className="mt-7 grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog, index) => {
-          const randomNumber = Math.floor(Math.random() * 7) + 1;
-
           return (
             <div key={`blog ${index + 1}`}>
               <Image
-                src={`/assets/images/blogs/image-${index + 1}.jpg`}
+                src={blog.imageUrl || "https://placehold.co/600x400"}
                 width={300}
                 height={300}
                 alt={`blog ${index + 1}`}

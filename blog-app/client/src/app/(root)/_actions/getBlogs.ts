@@ -5,7 +5,7 @@ export interface Blog {
   description: string;
   category: string;
   createdBy: string;
-  imageUrl?: { data: Buffer; contentType: string };
+  imageUrl?: string;
   createdAt: Date;
 }
 

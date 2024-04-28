@@ -33,13 +33,14 @@ const RenderLatestBlog: React.FC<Blog> = ({
   author,
   createdAt,
   title,
+  imageUrl,
   category,
   description,
 }) => {
   return (
     <div className="col-span-12 row-span-2 mx-auto h-full w-full lg:col-span-6">
       <Image
-        src={"/assets/images/blogs/image-7.jpg"}
+        src={imageUrl || "https://placehold.co/600x400"}
         width={600}
         height={200}
         alt="latest blog"
@@ -72,13 +73,16 @@ const RenderBlog: React.FC<Blog> = ({
   author,
   createdAt,
   title,
+  imageUrl,
   category,
   description,
 }) => {
+  console.log(imageUrl);
+
   return (
     <div className="col-span-12 mx-auto flex flex-col items-stretch gap-5 sm:flex-row lg:col-span-6">
       <Image
-        src={"/assets/images/blogs/image-4.jpg"}
+        src={imageUrl || "https://placehold.co/600x400"}
         width={200}
         height={20}
         alt="latest blog"
@@ -116,7 +120,7 @@ const RenderWidthFullBlog: React.FC<Blog> = ({
   return (
     <>
       <Image
-        src={"/assets/images/blogs/image-6.jpg"}
+        src={imageUrl || "https://placehold.co/600x400"}
         width={600}
         height={200}
         alt="latest blog"
