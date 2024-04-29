@@ -21,7 +21,7 @@ const getBlogs = async (req, res) => {
     const sortList = sort.split(",").join(" ");
     result = result.sort(sortList)
   } else {
-    result = result.sort("createdAt")
+    result = result.sort("-createdAt")
   }
 
   if (fields) {
@@ -42,7 +42,7 @@ const getBlogs = async (req, res) => {
 const createBlog = async (req, res) => {
   const userId = req.user.userId;
 
-  await blogModel.create({ ...req.body, createdBy: userId, imageUrl: {data: req.file.filename, contentType: 'image/png'} });
+  await blogModel.create({ ...req.body, createdBy: userId, });
   res.status(StatusCodes.CREATED).send();
 };
 

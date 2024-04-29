@@ -1,5 +1,17 @@
 const mongoose = require("mongoose");
 
+const categoryEnum = [
+  "change",
+  "challenges",
+  "happiness & fun",
+  "healthy habits",
+  "letting go",
+  "love & relationship",
+  "mental health",
+  "mindfulness & peace",
+  "purpose & passion"
+];
+
 const blogSchema = new mongoose.Schema(
   {
     title: {
@@ -26,6 +38,7 @@ const blogSchema = new mongoose.Schema(
     },
     category: {
       type: String,
+      enum: categoryEnum,
       required: [true, "category is required"],
     },
     createdBy: {
