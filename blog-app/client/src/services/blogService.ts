@@ -19,7 +19,7 @@ export interface BlogDetail extends BlogInterface {
 
 export async function getBlogs() {
   const res = await fetch(
-    `${URL}/blogs?fields=title,author,description,category,_id,imageUrl,createdAt`,
+    `${URL}/blogs?fields=title,author,description,category,_id,imageUrl,createdAt&limit=6&page=2`,
     {
       headers: {
         method: "GET",

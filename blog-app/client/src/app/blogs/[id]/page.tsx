@@ -27,7 +27,7 @@ const BlogDetail: React.FC<BlogDetailInterface> = async ({ params }) => {
         />
         <div
           dangerouslySetInnerHTML={{ __html: blog.content }}
-          className="content"
+          className="content prose"
         ></div>
       </div>
     </main>
