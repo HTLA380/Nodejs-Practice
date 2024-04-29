@@ -1,13 +1,12 @@
 import React from "react";
-import RecentBlogMock from "./_actions/recent-blog-mock.json";
 import Image from "next/image";
 import { fDate } from "@/utils/formatDate";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { getCategoryColors } from "@/utils/getCategoryColors";
-import { Blog, getRecentBlogs } from "./_actions/getBlogs";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
+import { Blog, getRecentBlogs } from "@/services/blogService";
 
 const RecentBlogSection = async () => {
   const blogs: Array<Blog> = await getRecentBlogs();
@@ -21,7 +20,7 @@ const RecentBlogSection = async () => {
           if (index === 0) {
             return <RenderLatestBlog key={blog._id} {...blog} />;
           }
-          if (index === RecentBlogMock.length - 1) {
+          if (index === blogs.length - 1) {
             return <RenderWidthFullBlog key={blog._id} {...blog} />;
           }
           return <RenderBlog key={blog._id} {...blog} />;

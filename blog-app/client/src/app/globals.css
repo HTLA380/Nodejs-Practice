@@ -91,3 +91,7 @@ h3 {
 .landing_separator {
   width: clamp(15rem, 74.2857vw + 5.1429rem, 72rem);
 }
+
+.content div p {
+  margin: 1rem 0;
+}

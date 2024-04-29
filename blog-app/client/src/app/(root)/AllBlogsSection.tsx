@@ -1,13 +1,12 @@
 import React from "react";
-import allBlogsData from "./_actions/all-blog-mock.json";
 import Image from "next/image";
 import { getCategoryColors } from "@/utils/getCategoryColors";
 import { fDate } from "@/utils/formatDate";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { Blog, getBlogs } from "./_actions/getBlogs";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
+import { Blog, getBlogs } from "@/services/blogService";
 
 const AllBlogsSection = async () => {
   const blogs: Array<Blog> = await getBlogs();
