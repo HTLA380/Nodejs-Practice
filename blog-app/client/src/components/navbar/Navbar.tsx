@@ -11,14 +11,14 @@ const Navbar = () => {
           BuddhaWisdom
         </Link>
         <ul className="hidden items-center gap-7 sm:flex">
-          {["blog", "projects", "about", "newsletter"].map((navlink) => (
+          {["blogs", "projects", "about", "newsletter"].map((navlink) => (
             <li key={navlink}>
-              <a
-                href={`#${navlink}`}
+              <Link
+                href={`/${navlink}`}
                 className="text-sm capitalize hover:underline"
               >
                 {navlink}
-              </a>
+              </Link>
             </li>
           ))}
           <ThemeToggler />

@@ -6,10 +6,10 @@ import { ArrowUpRight } from "lucide-react";
 import { getCategoryColors } from "@/utils/getCategoryColors";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
-import { Blog, getRecentBlogs } from "@/services/blogService";
+import { BlogInterface, getRecentBlogs } from "@/services/blogService";
 
 const RecentBlogSection = async () => {
-  const blogs: Array<Blog> = await getRecentBlogs();
+  const blogs: Array<BlogInterface> = await getRecentBlogs();
 
   return (
     <section className="border-b-border mx-auto mt-10 w-full max-w-80 border-b pb-12 sm:max-w-2xl lg:max-w-6xl">
@@ -30,7 +30,7 @@ const RecentBlogSection = async () => {
   );
 };
 
-const RenderLatestBlog: React.FC<Blog> = ({
+const RenderLatestBlog: React.FC<BlogInterface> = ({
   _id,
   author,
   createdAt,
@@ -79,7 +79,7 @@ const RenderLatestBlog: React.FC<Blog> = ({
   );
 };
 
-const RenderBlog: React.FC<Blog> = ({
+const RenderBlog: React.FC<BlogInterface> = ({
   _id,
   author,
   createdAt,
@@ -128,7 +128,7 @@ const RenderBlog: React.FC<Blog> = ({
   );
 };
 
-const RenderWidthFullBlog: React.FC<Blog> = ({
+const RenderWidthFullBlog: React.FC<BlogInterface> = ({
   _id,
   imageUrl,
   author,
@@ -181,7 +181,7 @@ const RenderCategoryLabel = ({ name }: { name: string }) => {
   return (
     <div
       key={`name`}
-      className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
+      className="rounded-full px-2 py-0.5 text-xs font-medium"
       style={{ backgroundColor, color }}
     >
       {name}
