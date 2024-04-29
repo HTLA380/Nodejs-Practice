@@ -79,6 +79,10 @@
   @apply bg-foreground text-red-200;
 }
 
+.dark *::selection {
+  @apply bg-secondary text-green-200;
+}
+
 h3 {
   @apply text-lg font-semibold sm:text-xl;
 }
