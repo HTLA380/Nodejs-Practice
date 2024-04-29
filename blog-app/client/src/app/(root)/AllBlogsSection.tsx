@@ -1,5 +1,4 @@
 import React from "react";
-import { getCategoryColors } from "@/utils/getCategoryColors";
 import { BlogInterface, getBlogs } from "@/services/blogService";
 import Blog from "@/components/blog/Blog";
 

@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { truncateText } from "@/utils/truncateText";
 import { fDate } from "@/utils/formatDate";
-import { getCategoryColors } from "@/utils/getCategoryColors";
+import BlogCategoryLabel from "./BlogCategoryLabel";
 
 const Blog: React.FC<BlogInterface> = ({
   _id,
@@ -47,23 +47,9 @@ const Blog: React.FC<BlogInterface> = ({
         </p>
 
         <div className="mt-3 flex items-center gap-2">
-          <RenderCategoryLabel name={category} />
+          <BlogCategoryLabel name={category} />
         </div>
       </div>
-    </div>
-  );
-};
-
-const RenderCategoryLabel = ({ name }: { name: string }) => {
-  const { backgroundColor, textColor: color } = getCategoryColors(name);
-
-  return (
-    <div
-      key={`name`}
-      className="rounded-full bg-blue-200 px-2 py-0.5 text-xs font-medium"
-      style={{ backgroundColor, color }}
-    >
-      {name}
     </div>
   );
 };

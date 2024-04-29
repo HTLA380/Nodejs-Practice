@@ -3,10 +3,10 @@ import Image from "next/image";
 import { fDate } from "@/utils/formatDate";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { getCategoryColors } from "@/utils/getCategoryColors";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
 import { BlogInterface, getRecentBlogs } from "@/services/blogService";
+import BlogCategoryLabel from "@/components/blog/BlogCategoryLabel";
 
 const RecentBlogSection = async () => {
   const blogs: Array<BlogInterface> = await getRecentBlogs();
@@ -72,7 +72,7 @@ const RenderLatestBlog: React.FC<BlogInterface> = ({
         </p>
 
         <div className="flex items-center gap-3">
-          <RenderCategoryLabel name={category} />
+          <BlogCategoryLabel name={category} />
         </div>
       </div>
     </div>
@@ -121,7 +121,7 @@ const RenderBlog: React.FC<BlogInterface> = ({
         </p>
 
         <div className="mt-3 flex items-center gap-2">
-          <RenderCategoryLabel name={category} />
+          <BlogCategoryLabel name={category} />
         </div>
       </div>
     </div>
@@ -168,24 +168,10 @@ const RenderWidthFullBlog: React.FC<BlogInterface> = ({
         </p>
 
         <div className="flex items-center gap-3">
-          <RenderCategoryLabel name={category} />
+          <BlogCategoryLabel name={category} />
         </div>
       </div>
     </>
-  );
-};
-
-const RenderCategoryLabel = ({ name }: { name: string }) => {
-  const { backgroundColor, textColor: color } = getCategoryColors(name);
-
-  return (
-    <div
-      key={`name`}
-      className="rounded-full px-2 py-0.5 text-xs font-medium"
-      style={{ backgroundColor, color }}
-    >
-      {name}
-    </div>
   );
 };
 
