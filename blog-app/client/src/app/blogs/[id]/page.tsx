@@ -27,7 +27,7 @@ const BlogDetail: React.FC<BlogDetailInterface> = async ({ params }) => {
         />
         <div
           dangerouslySetInnerHTML={{ __html: blog.content }}
-          className="content prose"
+          className="content prose dark:prose-invert"
         ></div>
       </div>
     </main>
