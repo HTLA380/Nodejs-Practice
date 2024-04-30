@@ -77,9 +77,9 @@ export async function getSingleBlog(id: string) {
   return data.blog;
 }
 
-export async function getBlogsByCategoryName(name: string) {
+export async function getBlogsByCategoryName(name: string, limit = 3) {
   const res = await fetch(
-    `${URL}/blogs?limit=3&fields=title,author,description,category,_id,imageUrl,createdAt&category=${name}`,
+    `${URL}/blogs?limit=${limit}&fields=title,author,description,category,_id,imageUrl,createdAt&category=${name}`,
     {
       headers: {
         method: "GET",

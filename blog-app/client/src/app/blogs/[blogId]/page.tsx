@@ -3,11 +3,11 @@ import Image from "next/image";
 import React from "react";
 
 interface BlogDetailInterface {
-  params: { id: string };
+  params: { blogId: string };
 }
 
 const BlogDetail: React.FC<BlogDetailInterface> = async ({ params }) => {
-  const blog: BlogDetail = await getSingleBlog(params.id);
+  const blog: BlogDetail = await getSingleBlog(params.blogId);
 
   return (
     <main className="border-y">
