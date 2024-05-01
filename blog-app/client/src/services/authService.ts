@@ -56,3 +56,20 @@ export async function loginUser({ email, password }: loginUserProps) {
 
   return data;
 }
+
+export async function getUserInfo(token: string) {
+  const res = await fetch(`${URL}/user`, {
+    headers: {
+      method: "GET",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to register user");
+  }
+
+  const data = await res.json();
+
+  return data;
+}
